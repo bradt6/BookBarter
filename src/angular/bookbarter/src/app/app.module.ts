@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule, FormControlDirective, FormGroupDirective } from '@angular/forms';
 import {
 	MatInputModule, 
 	MatButtonModule,
@@ -11,9 +11,9 @@ import {
 	MatTooltipModule,
 	MatMenuModule,
 } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -30,6 +30,9 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
 	BrowserAnimationsModule,
+	FormsModule,
+	ReactiveFormsModule,
+	HttpClientModule,
 	AppRoutingModule,
 	MatInputModule,
 	MatButtonModule,
@@ -39,7 +42,7 @@ import { HomeComponent } from './home/home.component';
 	MatTooltipModule,
 	MatMenuModule,
   ],
-  providers: [],
+  providers: [FormControlDirective, FormGroupDirective]
   bootstrap: [AppComponent]
 })
 export class AppModule { }
