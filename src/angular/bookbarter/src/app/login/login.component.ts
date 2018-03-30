@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +12,11 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 
 export class LoginComponent implements OnInit {
+	userForm: any
+	errorOccured = false;
 
-	constructor(private http: HttpClient,
+	constructor(private router: Router,
+				private loginService: LoginService,
 				private fb: FormBuilder) { }
 
 	ngOnInit() {
@@ -21,9 +27,15 @@ export class LoginComponent implements OnInit {
 	}
 
 	onSubmit() {
-		this.http.post('http://localhost:5000/login', this.userForm.value).subscribe(response => {
-			console.log(response)	
-		});
+		let username = this.userForm.value.username
+		let password = this.userForm.value.password
+		this.loginService.login(username, password).subscribe(() => {
+			if (this.loginService.loggedIn()) {
+				this.router.navigate(['/'])	
+			} else {
+				this.errorOccured = true;	
+			}
+		})
 	}
 
 }

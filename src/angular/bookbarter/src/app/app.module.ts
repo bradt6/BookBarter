@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 
+import { LoginService } from './login.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,11 @@ import { HomeComponent } from './home/home.component';
 	MatTooltipModule,
 	MatMenuModule,
   ],
-  providers: [FormControlDirective, FormGroupDirective]
+  providers: [
+  	FormControlDirective,
+	FormGroupDirective,
+	LoginService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

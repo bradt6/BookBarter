@@ -7,9 +7,13 @@
 			<mat-icon class="icon-spacing">account_circle</mat-icon>
 		</button>
 		<mat-menu #menu="matMenu">
-			<div class="flex-col">
-			  <a mat-raised-button class="menu-button" routerLink='/login'>Login</a>
-			  <a mat-raised-button class="menu-button" routerLink='/register'>Register</a>
+			<div class="flex-col" *ngIf="this.loginService.loggedIn()">
+				<p>Welcome {{ this.loginService.username }}</p>
+				<a mat-raised-button (click)="this.loginService.logout()" class="menu-button">Logout</a>
+			</div>
+			<div class="flex-col" *ngIf="!this.loginService.loggedIn()">
+				<a mat-raised-button class="menu-button" routerLink='/login'>Login</a>
+				<a mat-raised-button class="menu-button" routerLink='/register'>Register</a>
 			</div>
 		</mat-menu>
 	</mat-toolbar-row>
