@@ -1,12 +1,17 @@
 #!/bin/env python
 
+import jwt
 import bcrypt
 import mysql.connector
 from flask import Flask, request
+from flask_cors import CORS
 from flask_restplus import Resource, Api, fields
+
+from common import *
 
 app = Flask(__name__)
 api = Api(app, title='Book Barter API')
+CORS(app)
 
 ns = api.namespace('Users', description='User operations')
 
@@ -32,8 +37,15 @@ class Login(Resource):
         query = ("SELECT password FROM users WHERE username=%s")
         cursor.execute(query, (username,)) 
 
-        fetched_hash = cursor.fetchone()[0]
-        return {'result': bcrypt.checkpw(password.encode(), fetched_hash.encode())}
+        result = False
+        if (cursor.rowcount):
+            fetched_hash = cursor.fetchone()[0]
+            result = bcrypt.checkpw(password.encode(), fetched_hash.encode())
+
+        if (result == True):
+            token = jwt.encode({'username': username}, secret_jwt_key).decode()
+            return {'result': True, 'token': token}
+        return {'result': False}
 
 @api.route('/register')
 class Register(Resource):
