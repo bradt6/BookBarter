@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python3
 
 import jwt
 import bcrypt
@@ -18,7 +18,7 @@ ns = api.namespace('Users', description='User operations')
 connection = mysql.connector.connect(host='localhost', 
                                      user='root',
                                      password='root',
-                                     database='users')
+                                     database='login')
 cursor = connection.cursor(buffered=True)
 
 
@@ -63,4 +63,4 @@ class Register(Resource):
         return {'result': True}
         
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
