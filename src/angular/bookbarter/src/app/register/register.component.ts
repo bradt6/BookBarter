@@ -11,7 +11,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   userForm: any;
-  errorOccured = false;
+  errorOccured = '';
 
   constructor(private router: Router, private registerService: LoginService, private fb: FormBuilder){
 
@@ -20,17 +20,28 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.userForm = this.fb.group({
       username: ['', [Validators.required, Validators.maxLength(20)]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     let username = this.userForm.value.username;
     let password = this.userForm.value.password;
-    this.registerService.register(username,password).subscribe (() =>{
-      this.router.navigate(['/'])
-     }
-    )
+    let confirmPassword = this.userForm.value.confirmPassword;
+
+	if (password !== confirmPassword) {
+		this.errorOccured = 'Passwords do not match';
+		return
+	}
+
+    this.registerService.register(username,password).subscribe(data =>{
+		if (this.registerService.loggedIn()) {
+			this.router.navigate(['/'])
+		} else {
+			this.errorOccured = data['error']
+		}	
+	});
   }
 
 }

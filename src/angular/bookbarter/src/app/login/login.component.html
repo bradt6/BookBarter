@@ -1,5 +1,5 @@
 <form class="flex-col" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-	<p *ngIf="errorOccured">Wrong username or password</p>
+	<p *ngIf="errorOccured !== ''">{{ errorOccured }}</p>
 	<mat-form-field>
 		<input matInput formControlName="username" placeholder="Username">
 	</mat-form-field>

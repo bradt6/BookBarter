@@ -45,7 +45,7 @@ class Login(Resource):
         if (result == True):
             token = jwt.encode({'username': username}, secret_jwt_key).decode()
             return {'result': True, 'token': token}
-        return {'result': False}
+        return {'result': False, 'error': 'Wrong username/password'}
 
 @api.route('/register')
 class Register(Resource):
@@ -55,12 +55,18 @@ class Register(Resource):
         username = json['username']
         password = json['password']
 
+        query = ("SELECT username FROM users WHERE username=%s")
+        cursor.execute(query, (username,))
+        if (cursor.rowcount > 0):
+            return {'result': False, 'error': 'Username already exists'}
+
         hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
         query = ("INSERT INTO users(username,password) VALUES (%s,%s)")
         cursor.execute(query, (username,hashed))
         connection.commit()
 
-        return {'result': True}
+        token = jwt.encode({'username': username}, secret_jwt_key).decode()
+        return {'result': True, 'token': token}
         
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

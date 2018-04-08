@@ -13,7 +13,7 @@ import { LoginService } from '../login.service';
 
 export class LoginComponent implements OnInit {
 	userForm: any
-	errorOccured = false;
+	errorOccured = '';
 
 	constructor(private router: Router,
 				private loginService: LoginService,
@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
 	onSubmit() {
 		let username = this.userForm.value.username
 		let password = this.userForm.value.password
-		this.loginService.login(username, password).subscribe(() => {
+		this.loginService.login(username, password).subscribe(data => {
 			if (this.loginService.loggedIn()) {
 				this.router.navigate(['/'])	
 			} else {
-				this.errorOccured = true;	
+				this.errorOccured = data['error'];	
 			}
 		})
 	}

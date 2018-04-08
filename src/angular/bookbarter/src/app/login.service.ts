@@ -27,9 +27,14 @@ export class LoginService {
 	}
 
 	register(username, password) {
+		console.log('register')
+
 		let post = this.http.post(`${this.apiUrl}/register`, {'username': username, 'password': password})
 		post.subscribe(data => {
-			console.log(data)
+			if (data['result'] == true) {
+				this.username = username
+				this.loginToken = data['token']
+			}
 		})
 		return post
 	}

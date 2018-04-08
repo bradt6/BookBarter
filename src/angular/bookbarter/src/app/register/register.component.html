@@ -1,10 +1,13 @@
 <form class="flex-col" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-	<!--<p *ngIf="errorOccured">Wrong username or password</p>-->
+	<p *ngIf="errorOccured !== ''">{{ errorOccured }}</p>
 	<mat-form-field>
 		<input matInput formControlName="username" placeholder="Username">
 	</mat-form-field>
 	<mat-form-field>
 		<input matInput type="password" formControlName="password" placeholder="Password">
 	</mat-form-field>
-	<button mat-raised-button [disabled]="!userForm.valid">Login</button>
+	<mat-form-field>
+		<input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password">
+	</mat-form-field>
+	<button mat-raised-button [disabled]="!userForm.valid">Register</button>
 </form>
