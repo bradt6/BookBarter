@@ -1,0 +1,39 @@
+version: '3'
+services:
+    angular:
+        build: ./angular
+        volumes:
+            - ./angular/bookbarter:/var/www/angular/bookbarter
+        ports:
+            - "4200:4200"
+
+    login:
+        build: 
+            context: ./flask
+            args: 
+                FILE: login
+        volumes:
+            - ./flask/login.py:/var/www/flask/server.py
+        ports:
+            - "5000:5000"
+
+    browse:
+        build: 
+            context: ./flask
+            args: 
+                FILE: browse
+        volumes:
+            - ./flask/browse.py:/var/www/flask/server.py
+        ports:
+            - "5001:5001"
+
+    checkout:
+        build: 
+            context: ./flask
+            args: 
+                FILE: checkout
+        volumes:
+            - ./flask/checkout.py:/var/www/flask/server.py
+        ports:
+            - "5002:5002"
+

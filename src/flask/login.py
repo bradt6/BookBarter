@@ -10,7 +10,7 @@ from flask_restplus import Resource, Api, fields
 from common import *
 
 app = Flask(__name__)
-api = Api(app, title='Book Barter API')
+api = Api(app, title='Book Barter Login API')
 CORS(app)
 
 ns = api.namespace('Users', description='User operations')

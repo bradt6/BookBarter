@@ -8,16 +8,16 @@ RUN apt-get update && \
 	apt-get install -y nodejs 
 
 # Define mountable directories.
-VOLUME ["/var/www"]
+RUN mkdir /var/www/
+RUN mkdir /var/www/angular
+RUN mkdir /var/www/angular/bookbarter
 
 #Angular port
-EXPOSE 4200 
+EXPOSE 4200
 
-RUN mkdir /var/www/angular
-
-ADD bookbarter /var/www/angular
 WORKDIR /var/www/angular/bookbarter
-RUN npm install
-RUN npm install @angular/cli
+#RUN npm install @angular/cli
+#ADD . /var/www/angular/
+#RUN npm install
 
-ENTRYPOINT ["/var/www/angular/node_modules/@angular/cli/bin/ng","serve","-H","0.0.0.0"]
+ENTRYPOINT ["/var/www/angular/bookbarter/node_modules/@angular/cli/bin/ng","serve","-H","0.0.0.0"]

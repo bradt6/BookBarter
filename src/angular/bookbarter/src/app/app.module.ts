@@ -20,7 +20,6 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 
 import { LoginService } from './login.service';
-import { Home2Component } from './home2/home2.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,6 @@ import { Home2Component } from './home2/home2.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    Home2Component
   ],
   imports: [
     BrowserModule,
