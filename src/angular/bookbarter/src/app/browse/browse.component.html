@@ -1,0 +1,27 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+	<mat-grid-tile *ngFor="let book of browseService.books">
+		<mat-card class="book-card">
+			<!--<img mat-card-image>{{ book.picture }}</img>-->
+			<mat-card-title>{{ book.title }}</mat-card-title>
+			<mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+			<mat-card-content>{{ book.description }}</mat-card-content>
+		</mat-card>
+	</mat-grid-tile>
+</mat-grid-list>
+
+<form class="flex-col book-form" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+	<p *ngIf="errorOccured !== ''">{{ errorOccured }}</p>
+	<mat-form-field>
+		<input matInput formControlName="title" placeholder="Title">
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput formControlName="description" placeholder="Description">
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput formControlName="author" placeholder="Author">
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput formControlName="publisher" placeholder="Publisher">
+	</mat-form-field>
+	<button mat-raised-button [disabled]="!bookForm.valid">Create Book</button>
+</form>

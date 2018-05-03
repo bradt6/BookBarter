@@ -46,7 +46,8 @@ class Login(Resource):
             if (result == True):
                 token = jwt.encode({'username': username}, secret_jwt_key).decode()
                 return {'result': True, 'token': token}
-        return {'result': False, 'error': 'Wrong username/password'}
+            return {'result': False, 'error': 'Wrong username/password'}
+        return {'result': False, 'error': 'Nothing found in body'}
 
 @api.route('/register')
 class Register(Resource):
@@ -68,7 +69,8 @@ class Register(Resource):
             connection.commit()
 
             token = jwt.encode({'username': username}, secret_jwt_key).decode()
-        return {'result': True, 'token': token}
+            return {'result': True, 'token': token}
+        return {'result': False, 'error': 'Nothing found in body'}
         
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

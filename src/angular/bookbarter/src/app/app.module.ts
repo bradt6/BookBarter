@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControlDirective, FormGroupDirective } from '@angular/forms';
 import {
+	MatCardModule,
 	MatInputModule, 
 	MatButtonModule,
 	MatSidenavModule,
@@ -10,16 +11,19 @@ import {
 	MatToolbarModule,
 	MatTooltipModule,
 	MatMenuModule,
+	MatGridListModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowseComponent } from './browse/browse.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 
 import { LoginService } from './login.service';
+import { BrowseService } from './browse.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,7 @@ import { LoginService } from './login.service';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    BrowseComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ import { LoginService } from './login.service';
 	ReactiveFormsModule,
 	HttpClientModule,
 	AppRoutingModule,
+	MatCardModule,
 	MatInputModule,
 	MatButtonModule,
 	MatSidenavModule,
@@ -42,11 +48,13 @@ import { LoginService } from './login.service';
 	MatToolbarModule,
 	MatTooltipModule,
 	MatMenuModule,
+	MatGridListModule
   ],
   providers: [
   	FormControlDirective,
 	FormGroupDirective,
 	LoginService,
+	BrowseService
   ],
   bootstrap: [AppComponent]
 })

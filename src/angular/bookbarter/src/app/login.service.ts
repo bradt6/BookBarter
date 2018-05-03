@@ -27,8 +27,6 @@ export class LoginService {
 	}
 
 	register(username, password) {
-		console.log('register')
-
 		let post = this.http.post(`${this.apiUrl}/register`, {'username': username, 'password': password})
 		post.subscribe(data => {
 			if (data['result'] == true) {

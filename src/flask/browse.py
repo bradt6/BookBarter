@@ -19,7 +19,7 @@ connection = mysql.connector.connect(host='localhost',
                                      user='root',
                                      password='root',
                                      database='browse')
-cursor = connection.cursor(buffered=True)
+cursor = connection.cursor(buffered=True, dictionary=True)
 
 browse_fields = api.model('Browse', {
     'title': fields.String,
@@ -34,17 +34,24 @@ class Browse(Resource):
     @api.expect(browse_fields)
     def post(self):
         json = request.get_json()
-        title = json['title']
-        description = json['description']
-        author = json['author']
-        publisher = json['publisher']
+        if (json is not None):
+            title = json['title']
+            description = json['description']
+            author = json['author']
+            publisher = json['publisher']
 
-        query = ("INSERT INTO catalogue(title,description,author,publisher) VALUES (%s,%s,%s,%s)")
-        cursor.execute(query, (title, description, author, publisher))
-        connection.commit(); 
+            query = ("INSERT INTO catalogue(title,description,author,publisher) VALUES (%s,%s,%s,%s)")
+            cursor.execute(query, (title, description, author, publisher))
+            connection.commit(); 
+            return {'result': True}
+        return {'result': False, 'error': 'Nothing found in body'}
 
     def get(self):
-        pass
+        query = ("SELECT * from catalogue")
+        cursor.execute(query)
+
+        books = cursor.fetchall();
+        return {'result': books}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
