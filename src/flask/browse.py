@@ -1,8 +1,13 @@
 #!/bin/env python3
 
 import jwt
+import base64
 import bcrypt
 import mysql.connector
+
+from PIL import Image
+from io import BytesIO
+
 from flask import Flask, request
 from flask_cors import CORS
 from flask_restplus import Resource, Api, fields
@@ -39,9 +44,23 @@ class Browse(Resource):
             description = json['description']
             author = json['author']
             publisher = json['publisher']
+            picture = json['picture']
 
-            query = ("INSERT INTO catalogue(title,description,author,publisher) VALUES (%s,%s,%s,%s)")
-            cursor.execute(query, (title, description, author, publisher))
+            query = ("SELECT * FROM catalogue WHERE title=%s")
+            cursor.execute(query, (title,))
+            if (cursor.rowcount > 0):
+                return {'result': False, 'error': 'Book already exists'}
+
+            size = 128,128
+            b64_decoded = base64.b64decode(picture.split(',')[1])
+            im = Image.open(BytesIO(b64_decoded))
+            im.thumbnail(size, Image.ANTIALIAS)
+            final_buffer = BytesIO()
+            im.save(final_buffer, format="PNG")
+            picture = base64.b64encode(final_buffer.getvalue())
+
+            query = ("INSERT INTO catalogue(title,description,author,publisher,picture) VALUES (%s,%s,%s,%s,%s)")
+            cursor.execute(query, (title, description, author, publisher, picture))
             connection.commit(); 
             return {'result': True}
         return {'result': False, 'error': 'Nothing found in body'}

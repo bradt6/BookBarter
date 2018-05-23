@@ -1,4 +1,17 @@
 .book-card {
 	width: 75%;
-	height: 75%;
+	/*height: 75%;*/
+}
+
+.book-description {
+	width: 50%;
+}
+
+.book-image {
+	width: 50%;
+}
+
+.book-content {
+	display: flex;
+	justify-content: space-between;
 }

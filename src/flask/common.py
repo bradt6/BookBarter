@@ -9,7 +9,8 @@ def check_auth(f):
         token = request.headers.get('Authorization');
         if (token):
             token_decoded = jwt.decode(token, secret_jwt_key) 
-            if token_decoded.get('admin',False):
-                f(*args);
+            if (token_decoded.get('username','') == 'admin'):
+                return f(*args);
+        return {'result': False, 'error': 'Authorization token incorrect'}
     return returned_function;
 

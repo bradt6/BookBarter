@@ -20,4 +20,4 @@ WORKDIR /var/www/angular/bookbarter
 #ADD . /var/www/angular/
 #RUN npm install
 
-ENTRYPOINT ["/var/www/angular/bookbarter/node_modules/@angular/cli/bin/ng","serve","-H","0.0.0.0"]
+ENTRYPOINT ["/var/www/angular/bookbarter/node_modules/@angular/cli/bin/ng","serve","--host","0.0.0.0"]

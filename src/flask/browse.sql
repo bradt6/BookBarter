@@ -6,5 +6,6 @@ CREATE TABLE catalogue (
 	title VARCHAR(50) UNIQUE,
 	description VARCHAR(200),
 	author VARCHAR(50),
-	publisher VARCHAR(50)
+	publisher VARCHAR(50),
+	picture VARCHAR(10000)
 )

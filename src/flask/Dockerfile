@@ -40,6 +40,6 @@ RUN \
   rm -f /tmp/config && \
   rm -f /tmp/$FILE.sql
 
-#ADD ./$FILE.py /var/www/flask/$FILE.py
+ADD ./$FILE.py /var/www/flask/$FILE.py
 
 ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
