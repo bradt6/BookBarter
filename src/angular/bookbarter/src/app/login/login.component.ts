@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
 		let password = this.userForm.value.password
 		this.loginService.login(username, password).subscribe(data => {
 			if (this.loginService.loggedIn()) {
-				this.router.navigate(['/'])	
+				//TODO Make a login success page?
+				this.errorOccured = 'Login successful'
+				setTimeout(() => { this.router.navigate(['/']) }, 2000);
 			} else {
 				this.errorOccured = data['error'];	
 			}

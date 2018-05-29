@@ -13,7 +13,7 @@ services:
             args: 
                 FILE: login
         volumes:
-            - ./flask/login.py:/var/www/flask/server.py
+            - ./flask/login.py:/var/www/flask/server.py:ro
         ports:
             - "5000:5000"
 
@@ -23,7 +23,7 @@ services:
             args: 
                 FILE: browse
         volumes:
-            - ./flask/browse.py:/var/www/flask/server.py
+            - ./flask/browse.py:/var/www/flask/server.py:ro
         ports:
             - "5001:5001"
 
@@ -33,7 +33,7 @@ services:
             args: 
                 FILE: checkout
         volumes:
-            - ./flask/checkout.py:/var/www/flask/server.py
+            - ./flask/checkout.py:/var/www/flask/server.py:ro
         ports:
             - "5002:5002"
 

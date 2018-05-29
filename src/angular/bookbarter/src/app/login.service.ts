@@ -1,21 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import 'rxjs/add/operator/share'
 
-export function LocalStorage(
-    target: Object, // The prototype of the class
-    decoratedPropertyName: string // The name of the property
-    ) {
-
-    // get and set methods
-    Object.defineProperty(target, decoratedPropertyName, {
-        get: function () {
-            return localStorage.getItem(decoratedPropertyName) || '';
-        },
-        set: function (newValue) {
-            localStorage.setItem(decoratedPropertyName, newValue);
-        }
-    });
-}
+import { LocalStorage } from './local-storage';
 
 @Injectable()
 export class LoginService {
@@ -29,7 +16,7 @@ export class LoginService {
 	constructor(private http: HttpClient) { }
 
 	login(username, password) {
-		let post = this.http.post(`${this.apiUrl}/login`, {'username': username, 'password': password})
+		let post = this.http.post(`${this.apiUrl}/login`, {'username': username, 'password': password}).share()
 		post.subscribe(data => {
 			if (data['result'] == true) {
 				this.username = username
@@ -45,7 +32,7 @@ export class LoginService {
 	}
 
 	register(username, password) {
-		let post = this.http.post(`${this.apiUrl}/register`, {'username': username, 'password': password})
+		let post = this.http.post(`${this.apiUrl}/register`, {'username': username, 'password': password}).share()
 		post.subscribe(data => {
 			if (data['result'] == true) {
 				this.username = username

@@ -11,7 +11,8 @@ import {
 	MatToolbarModule,
 	MatTooltipModule,
 	MatMenuModule,
-	MatGridListModule
+	MatGridListModule,
+	MatListModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -24,6 +25,8 @@ import { HomeComponent } from './home/home.component';
 
 import { LoginService } from './login.service';
 import { BrowseService } from './browse.service';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ReadComponent } from './read/read.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { BrowseService } from './browse.service';
     RegisterComponent,
     HomeComponent,
     BrowseComponent,
+    CheckoutComponent,
+    ReadComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import { BrowseService } from './browse.service';
 	MatToolbarModule,
 	MatTooltipModule,
 	MatMenuModule,
-	MatGridListModule
+	MatGridListModule,
+	MatListModule
   ],
   providers: [
   	FormControlDirective,

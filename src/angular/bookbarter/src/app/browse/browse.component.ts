@@ -4,6 +4,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Book } from '../book';
 import { LoginService } from '../login.service';
 import { BrowseService } from '../browse.service';
+import { CheckoutService } from '../checkout.service';
 
 @Component({
 	selector: 'app-browse',
@@ -17,15 +18,17 @@ export class BrowseComponent implements OnInit {
 	constructor(private fb: FormBuilder, 
 		private cd: ChangeDetectorRef,
 		private loginService: LoginService,
-		private browseService: BrowseService) { }
+		private browseService: BrowseService,
+		private checkoutService: CheckoutService) { }
 
 	ngOnInit() {
 		this.bookForm = this.fb.group({
-			picture: ['', Validators.required],
 			title: ['', [Validators.required, Validators.maxLength(20)]],
-			description: ['', Validators.required],
 			author: ['', Validators.required],
-			publisher: ['', Validators.required]
+			publisher: ['', Validators.required],
+			description: ['', Validators.required],
+			text: ['', Validators.required],
+			picture: ['', Validators.required],
 		})
 
 		this.getBooks();
