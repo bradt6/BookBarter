@@ -7,16 +7,11 @@ Publisher: Trial
 Description: When a rusty cargo ship carrying Mahindan and five hundred fellow refugees from Sri Lanka's bloody civil war reaches Vancouver's shores, the young father thinks he and his six-year-old son can finally start a new life. Instead, the group is thrown into a detention processing center, with government officials and news headlines speculating that among the "boat people" are members of a separatist militant organization responsible for countless suicide attacks—and that these terrorists now pose a threat to Canada's national security. As the refugees become subject to heavy interrogation, Mahindan begins to fear that a desperate act taken in Sri Lanka to fund their escape may now jeopardize his and his son's chance for asylum.
 Told through the alternating perspectives of Mahindan; his lawyer, Priya, a second-generation Sri Lankan Canadian who reluctantly represents the refugees; and Grace, a third-generation Japanese Canadian adjudicator who must decide Mahindan's fate as evidence mounts against him, The Boat People is a spellbinding and timely novel that provokes a deeply compassionate lens through which to view the current refugee crisis.
 
-Text:
+Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tortor massa, blandit eget ultrices sollicitudin, vulputate non orci. Suspendisse eu dui eget quam congue pharetra ut et ligula. Sed aliquet ante in felis elementum pulvinar. Nam tellus eros, rutrum eu commodo at, fringilla et nulla. Phasellus tempus mauris massa, nec luctus ipsum dapibus at. Morbi vel augue lectus. Nunc luctus enim quis faucibus fringilla. In ac ex a neque suscipit tristique. Pellentesque eget aliquet dolor. Nunc placerat sed tortor porta volutpat. Phasellus vel gravida dui, sed ultricies velit. Etiam ut maximus ex. Integer efficitur venenatis arcu, nec hendrerit nunc sagittis quis.
+
+Phasellus tortor eros, fringilla vulputate vestibulum non, accumsan vitae dolor. Nam vehicula, dolor vitae ultrices accumsan, turpis magna aliquet nulla, non scelerisque orci erat nec leo. Pellentesque consectetur, nulla in eleifend accumsan, massa erat iaculis dui, ac tristique ante enim nec neque. Nam vitae metus vestibulum, molestie diam sed, semper erat. Nam euismod enim ac elit accumsan laoreet. Proin feugiat vel felis in sodales. Donec faucibus lorem mi, a tristique ex bibendum vitae. Suspendisse tempor vel neque vitae pretium. In suscipit tincidunt bibendum. Nunc tristique tellus justo, id egestas ligula bibendum vel. Aenean ut ullamcorper justo, in scelerisque nisi. Proin id ornare velit. Etiam sapien lorem, cursus in libero non, vestibulum ultrices est. Ut luctus neque vitae mauris malesuada tempor.
 
 picture: boat_people.jpg
-
-
-
-
-
-
-
 
 Title: The Bone Mother
 
