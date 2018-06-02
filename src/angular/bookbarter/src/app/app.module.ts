@@ -25,7 +25,6 @@ import { HomeComponent } from './home/home.component';
 
 import { LoginService } from './login.service';
 import { BrowseService } from './browse.service';
-import { CheckoutComponent } from './checkout/checkout.component';
 import { ReadComponent } from './read/read.component';
 
 @NgModule({
@@ -35,7 +34,6 @@ import { ReadComponent } from './read/read.component';
     RegisterComponent,
     HomeComponent,
     BrowseComponent,
-    CheckoutComponent,
     ReadComponent,
   ],
   imports: [

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import { LoginService } from './login.service';
-import { CheckoutService } from './checkout.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +10,5 @@ import { CheckoutService } from './checkout.service';
 export class AppComponent {
   title = 'BookBarter';
 
-  constructor(private loginService: LoginService,
-  			  private checkoutService: CheckoutService) {}
+  constructor(private loginService: LoginService) {}
 }

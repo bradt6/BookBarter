@@ -27,13 +27,3 @@ services:
         ports:
             - "5001:5001"
 
-    checkout:
-        build: 
-            context: ./flask
-            args: 
-                FILE: checkout
-        volumes:
-            - ./flask/checkout.py:/var/www/flask/server.py:ro
-        ports:
-            - "5002:5002"
-
