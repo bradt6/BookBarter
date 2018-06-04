@@ -5,7 +5,19 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getUserButton() {
+    return element(by.id('userBtn'));
+  }
+
+  getMenuButton() {
+    return element.all(by.css('.menu-button'));
+  }
+
+  getInput() {
+    return element.all(by.css('input'));
+  }
+
+  getLoginButton() {
+    return element(by.css('button'));
   }
 }

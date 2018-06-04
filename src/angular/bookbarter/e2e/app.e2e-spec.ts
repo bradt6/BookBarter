@@ -1,4 +1,5 @@
 import { AppPage } from './app.po';
+import { browser } from 'protractor';
 
 describe('bookbarter App', () => {
   let page: AppPage;
@@ -7,8 +8,32 @@ describe('bookbarter App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should register new user', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    page.getUserButton().click();
+    browser.sleep(500);
+    page.getMenuButton().get(1).click();
+    browser.sleep(500);
+    page.getInput().get(0).sendKeys('TestUser');
+    browser.sleep(500);
+    page.getInput().get(1).sendKeys('test');
+    browser.sleep(500);
+    page.getInput().get(2).sendKeys('test');
+    browser.sleep(500);
+    page.getLoginButton().click();
+    browser.sleep(500);
+  });
+
+  it('should login existing user', () => {
+    page.navigateTo();
+    page.getUserButton().click();
+    browser.sleep(500);
+    page.getMenuButton().get(0).click();
+    page.getInput().get(0).sendKeys('TestUser');
+    browser.sleep(500);
+    page.getInput().get(1).sendKeys('test');
+    browser.sleep(500);
+    page.getLoginButton().click();
+    browser.sleep(500);
   });
 });
