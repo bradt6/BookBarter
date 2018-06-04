@@ -36,4 +36,34 @@ describe('bookbarter App', () => {
     page.getLoginButton().click();
     browser.sleep(500);
   });
+
+  it('should register admin user', () => {
+    page.navigateTo();
+    page.getUserButton().click();
+    browser.sleep(500);
+    page.getMenuButton().get(1).click();
+    browser.sleep(500);
+    page.getInput().get(0).sendKeys('admin');
+    browser.sleep(500);
+    page.getInput().get(1).sendKeys('admin');
+    browser.sleep(500);
+    page.getInput().get(2).sendKeys('admin');
+    browser.sleep(500);
+    page.getLoginButton().click();
+    browser.sleep(500);
+  });
+
+  it('should login admin user', () => {
+    page.navigateTo();
+    page.getUserButton().click();
+    browser.sleep(500);
+    page.getMenuButton().get(0).click();
+    page.getInput().get(0).sendKeys('admin');
+    browser.sleep(500);
+    page.getInput().get(1).sendKeys('admin');
+    browser.sleep(500);
+    page.getLoginButton().click();
+    browser.sleep(500);
+  });
+
 });
