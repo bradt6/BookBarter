@@ -1,5 +1,5 @@
 <form class="flex-col login-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-	<p *ngIf="errorOccured !== ''">{{ errorOccured }}</p>
+	<p style="color: red;">{{ errorOccured }}</p>
 	<mat-form-field>
 		<input matInput formControlName="username" placeholder="Username">
 	</mat-form-field>

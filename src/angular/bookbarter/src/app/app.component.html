@@ -8,6 +8,7 @@
 		<mat-menu #menu="matMenu">
 			<div class="flex-col" *ngIf="this.loginService.loggedIn()">
 				<p>Welcome {{ this.loginService.username }}</p>
+				<a mat-raised-button routerLink="/favourites" class="menu-button">Favourites</a>
 				<a mat-raised-button (click)="this.loginService.logout()" class="menu-button">Logout</a>
 			</div>
 			<div class="flex-col" *ngIf="!this.loginService.loggedIn()">

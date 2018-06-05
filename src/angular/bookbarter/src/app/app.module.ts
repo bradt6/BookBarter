@@ -26,6 +26,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginService } from './login.service';
 import { BrowseService } from './browse.service';
 import { ReadComponent } from './read/read.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ReadComponent } from './read/read.component';
     HomeComponent,
     BrowseComponent,
     ReadComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,

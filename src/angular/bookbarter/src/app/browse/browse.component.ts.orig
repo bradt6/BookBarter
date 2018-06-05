@@ -4,7 +4,10 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Book } from '../book';
 import { LoginService } from '../login.service';
 import { BrowseService } from '../browse.service';
+<<<<<<< Updated upstream
+=======
 import { FavouritesService } from '../favourites.service';
+>>>>>>> Stashed changes
 
 @Component({
 	selector: 'app-browse',
@@ -18,8 +21,12 @@ export class BrowseComponent implements OnInit {
 	constructor(private fb: FormBuilder, 
 		private cd: ChangeDetectorRef,
 		private loginService: LoginService,
+<<<<<<< Updated upstream
+		private browseService: BrowseService) { }
+=======
 		private browseService: BrowseService,
 		private favouriteService: FavouritesService) { }
+>>>>>>> Stashed changes
 
 	ngOnInit() {
 		this.bookForm = this.fb.group({

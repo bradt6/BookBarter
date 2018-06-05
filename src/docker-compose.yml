@@ -27,3 +27,14 @@ services:
         ports:
             - "5001:5001"
 
+    favourites:
+        build: 
+            context: ./flask
+            args: 
+                FILE: favourites
+        volumes:
+            - ./flask/favourites.py:/var/www/flask/server.py:ro
+        ports:
+            - "5002:5002"
+
+

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { LoginService } from '../login.service';
 import { BrowseService } from '../browse.service';
 import { Book } from '../book';
 
@@ -14,9 +15,12 @@ export class ReadComponent implements OnInit {
 	private book: Book = {} as Book;
 
 	constructor(private route: ActivatedRoute, 
+				private loginService: LoginService,
 				private browseService: BrowseService) { }
 
 	ngOnInit() {
+		if (!this.loginService.loggedIn()) return
+		
 		this.route.params.subscribe(params => {
 			this.browseService.getBookText(params['id']).subscribe((data) => {
 				this.loading = false;
