@@ -18,6 +18,10 @@ export class AppPage {
   }
 
   getLoginButton() {
-    return element(by.css('button'));
+    return element.all(by.css('button'));
+  }
+
+  getTextArea() {
+    return element.all(by.css('textarea'));
   }
 }
