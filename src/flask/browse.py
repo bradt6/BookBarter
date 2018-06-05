@@ -4,6 +4,7 @@ import jwt
 import base64
 import bcrypt
 import mysql.connector
+import unittest
 
 from threading import Lock
 
@@ -95,5 +96,13 @@ class BrowseText(Resource):
             return {'result': False, 'error': 'Invalid book id'}
         return {'result': False, 'error': 'No book id supplied'}
 
+class TestStringMethods(unittest.TestCase):
+    def test_post(self):
+        self.assertFalse(post(self))
+
+    def test_get(self):
+        self.assertFalse(get(self))
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, threaded=True, debug=True)
+    unittest.main()
