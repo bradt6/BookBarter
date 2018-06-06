@@ -30,9 +30,58 @@ checkout_fields = api.model('Checkout', {
     'bookId': fields.String,
 })
 
-@api.route('/checkout')
-class Checkout(Resource):
-    pass
+@api.route('/cart')
+class Cart(Resource):
+    @check_auth
+    @api.expect(checkout_fields)
+    def post(self):
+        token = request.headers.get('Authorization');
+
+        json = request.get_json()
+        if (json is not None):
+            book_id = json['book_id']
+
+            with lock:
+                query = ("SELECT * FROM user_cart WHERE jwt_string=%s AND book=%s")
+                cursor.execute(query, (token, book_id))
+                if (cursor.rowcount > 0):
+                    return {'result': False, 'error': 'Item already in cart'}
+
+                query = ("INSERT INTO user_cart(jwt_string, book) VALUES (%s,%s)")
+                cursor.execute(query, (token, book_id))
+                connection.commit(); 
+
+            return {'result': True}
+        return {'result': False, 'error': 'Nothing found in body'}
+
+    @check_auth
+    def get(self):
+        token = request.headers.get('Authorization');
+        with lock:
+            query = ("SELECT book FROM user_cart WHERE jwt_string=%s")
+            cursor.execute(query, (token,))
+            books = map(lambda x: x['book'], cursor.fetchall());
+
+            return {'result': list(books)}
+
+@api.route('/cart/remove')
+class CartRemove(Resource):
+    @check_auth
+    @api.expect(checkout_fields)
+    def post(self):
+        token = request.headers.get('Authorization');
+
+        json = request.get_json()
+        if (json is not None):
+            book_id = json['book_id']
+
+            with lock:
+                query = ("DELETE FROM user_cart WHERE jwt_string=%s AND book=%s")
+                cursor.execute(query, (token, book_id))
+                connection.commit(); 
+
+            return {'result': True}
+        return {'result': False, 'error': 'Nothing found in body'}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5003, threaded=True, debug=True)

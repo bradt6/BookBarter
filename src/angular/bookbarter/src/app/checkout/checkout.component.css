@@ -1,0 +1,25 @@
+.book-card {
+	width: 45%;
+	/*height: 75%;*/
+}
+
+.book-description {
+	width: 50%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+}
+
+.book-image {
+	width: 128px;
+	height: 50%;
+	margin: auto;
+}
+
+.book-content {
+	display: flex;
+	justify-content: space-between;
+}

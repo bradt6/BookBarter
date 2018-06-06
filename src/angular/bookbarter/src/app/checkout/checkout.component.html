@@ -1,0 +1,90 @@
+<mat-horizontal-stepper #stepper>
+	<mat-step>
+		<form>
+			<ng-template matStepLabel>Fill out your name</ng-template>
+			<mat-form-field>
+				<input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+			</mat-form-field>
+			<div>
+				<button mat-button matStepperNext>Next</button>
+			</div>
+		</form>
+	</mat-step>
+	<mat-step>
+		<form>
+			<ng-template matStepLabel>Fill out your address</ng-template>
+			<mat-form-field>
+				<input matInput placeholder="Address" formControlName="secondCtrl" required>
+			</mat-form-field>
+			<div>
+				<button mat-button matStepperPrevious>Back</button>
+				<button mat-button matStepperNext>Next</button>
+			</div>
+		</form>
+	</mat-step>
+	<mat-step>
+		<form>
+			<ng-template matStepLabel>Payment</ng-template>
+			<mat-accordion>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Credit card payment
+						</mat-panel-title>
+					</mat-expansion-panel-header>
+
+					<mat-form-field>
+						<input matInput placeholder="Card number">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput placeholder="Cardholder name">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput type="date" placeholder="MM/YY">
+					</mat-form-field>
+					<mat-form-field>
+						<input matInput type="number" min="0" max="999" placeholder="CVV">
+					</mat-form-field>
+				</mat-expansion-panel>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Paypal
+						</mat-panel-title>
+					</mat-expansion-panel-header>
+					<a href="https://paypal.com">Paypal Redirection link</a>
+				</mat-expansion-panel>
+			</mat-accordion>
+			<div>
+				<button mat-button matStepperPrevious>Back</button>
+				<button mat-button matStepperNext>Next</button>
+			</div>
+		</form>
+	</mat-step>
+	<mat-step>
+		<ng-template matStepLabel>Review</ng-template>
+		<mat-card class="book-card" *ngFor="let book of this.checkoutService.books">
+				<mat-card-header>
+					<mat-card-title>{{ book.title }}</mat-card-title>
+					<mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+				</mat-card-header>
+				<mat-card-content>
+					<div class="book-content">
+						<p class="book-description">
+							{{ book.description }}
+						</p>
+						<img mat-card-image class="book-image" [src]="book.picture" />
+					</div>
+				</mat-card-content>
+		</mat-card>
+	</mat-step>
+	<mat-step>
+		<ng-template matStepLabel>Done</ng-template>
+		You are now done.
+		<div>
+			<button mat-button matStepperPrevious>Back</button>
+			<button mat-button (click)="stepper.reset()">Reset</button>
+		</div>
+	</mat-step>
+</mat-horizontal-stepper>
+

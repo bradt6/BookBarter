@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { Validators, FormBuilder } from '@angular/forms';
 
 import { Book } from '../book';
@@ -17,6 +18,8 @@ export class BrowseComponent implements OnInit {
 	private bookForm: any;
 
 	constructor(private fb: FormBuilder, 
+		private router: Router,
+		private dialog: MatDialog,
 		private cd: ChangeDetectorRef,
 		private loginService: LoginService,
 		private browseService: BrowseService,
@@ -68,4 +71,53 @@ export class BrowseComponent implements OnInit {
 			};
 		}
 	}
+
+	read(book: Book) {
+		if (this.loginService.loggedIn()) {
+			this.router.navigate(['/read', book.id])
+		} else {
+			this.openDialog()
+		}
+	}
+
+	favourite(book: Book) {
+		if (this.loginService.loggedIn()) {
+			this.favouriteService.favouriteBook(book)
+		} else {
+			this.openDialog()
+		}
+	}
+
+	buy(book: Book) {
+		if (this.loginService.loggedIn()) {
+			this.checkoutService.addToCart(book)
+		} else {
+			this.openDialog()
+		}
+	}
+
+	openDialog() {
+		let dialogRef = this.dialog.open(LoginDialog, {
+			width: '250px',
+			data: {}
+		});
+	}
 }
+
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+@Component({
+	selector: 'login-dialog',
+	templateUrl: 'login-dialog.html',
+})
+export class LoginDialog {
+	constructor(
+		public dialogRef: MatDialogRef<LoginDialog>,
+		@Inject(MAT_DIALOG_DATA) public data: any) { }
+
+	onClick(): void {
+		this.dialogRef.close();
+	}
+}
+
+

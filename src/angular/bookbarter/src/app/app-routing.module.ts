@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReadComponent } from './read/read.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', component: BrowseComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'read/:id', component: ReadComponent },
   { path: 'favourites', component: FavouritesComponent },
+  { path: 'checkout', component: CheckoutComponent },
 ];
 
 @NgModule({
