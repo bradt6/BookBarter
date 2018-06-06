@@ -16,16 +16,18 @@ export class FavouritesService {
 				private browseService: BrowseService, 
 				private loginService: LoginService) { }
 
-	favouriteBook(bookId: number) {
+	favouriteBook(book: Book) {
 		let options = {
 			headers: new HttpHeaders({
 				'Content-Type': 'application/json',
 				'Authorization': this.loginService.loginToken
 			})
 		}
-		let sendObject = { 'book_id': bookId }
+		let sendObject = { 'book_id': book.id }
 		let post = this.http.post(`${this.apiUrl}/favourite`, sendObject, options).share()
-		post.subscribe();
+		post.subscribe(() => {
+			this.books.push(book)
+		});
 	}
 
 	getFavourites() {
@@ -45,5 +47,9 @@ export class FavouritesService {
 				}
 			});
 		});
+	}
+
+	inFavourites(book: Book) {
+		return this.books.some(x => x.id === book.id)
 	}
 }

@@ -63,7 +63,7 @@ class Browse(Resource):
                 im = Image.open(BytesIO(b64_decoded))
                 im.thumbnail(size, Image.ANTIALIAS)
                 final_buffer = BytesIO()
-                im.save(final_buffer, format="PNG")
+                im.save(final_buffer, format="JPEG")
                 picture = base64.b64encode(final_buffer.getvalue())
 
                 query = ("INSERT INTO catalogue(title,author,publisher,description,text,picture) VALUES (%s,%s,%s,%s,%s,%s)")

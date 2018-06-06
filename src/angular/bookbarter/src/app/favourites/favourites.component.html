@@ -1,4 +1,9 @@
 <mat-grid-list cols="2" rowHeight="2:1">
+	<mat-card *ngIf="favouritesService.books.length === 0">
+		<mat-card-content>
+			<p>No favourites found, try adding some to your account from the homepage</p>
+		</mat-card-content>
+	</mat-card>
 	<mat-grid-tile *ngFor="let book of favouritesService.books">
 		<mat-card class="book-card">
 			<mat-card-header>

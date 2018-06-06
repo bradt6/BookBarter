@@ -5,6 +5,7 @@ import { Book } from '../book';
 import { LoginService } from '../login.service';
 import { BrowseService } from '../browse.service';
 import { FavouritesService } from '../favourites.service';
+import { CheckoutService } from '../checkout.service';
 
 @Component({
 	selector: 'app-browse',
@@ -19,7 +20,8 @@ export class BrowseComponent implements OnInit {
 		private cd: ChangeDetectorRef,
 		private loginService: LoginService,
 		private browseService: BrowseService,
-		private favouriteService: FavouritesService) { }
+		private favouriteService: FavouritesService,
+		private checkoutService: CheckoutService) { }
 
 	ngOnInit() {
 		this.bookForm = this.fb.group({
@@ -32,6 +34,7 @@ export class BrowseComponent implements OnInit {
 		})
 
 		this.getBooks();
+		this.favouriteService.getFavourites();
 	}
 
 	getBooks() {
