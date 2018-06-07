@@ -37,7 +37,7 @@ describe('bookbarter App', () => {
     browser.sleep(500);
     page.getUserButton().click();
     browser.sleep(500);
-    page.getMenuButton().get(0).click();
+    page.getMenuButton().get(1).click();
     browser.sleep(500);
   });
 
@@ -70,7 +70,7 @@ describe('bookbarter App', () => {
     browser.sleep(500);
     page.getUserButton().click();
     browser.sleep(500);
-    page.getMenuButton().get(0).click();
+    page.getMenuButton().get(1).click();
     browser.sleep(500);
   });
 
